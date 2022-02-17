@@ -32,7 +32,7 @@ body {
   line-height: 1;
   font-family: Arial;
   font-size: 18px;
-  background-color: #FF5E56;
+  background-color: white;
   text-align: center;
 }
 
@@ -40,12 +40,20 @@ body {
   max-height: 100%;
   overflow: hidden;
   display: flex;
+
 }
 ._container {
   max-width: 1280px;
   padding: 0 15px;
   margin: 0 auto;
   box-sizing: content-box;
+}
+
+.test__app {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 50px;
+
 }
 
 .button__open-pop-up {
