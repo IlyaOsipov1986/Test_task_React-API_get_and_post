@@ -13,9 +13,8 @@
     transition: 0.5s;
 }
 .modal.active {
-    opacity: 1;
+    opacity: 98%;
     pointer-events: all;
-
 }
 .modal__content {
     display: flex;
@@ -29,7 +28,6 @@
     height: 600px;
     transform: scale(0.5);
     transition: 0.4s all;
-
 }
 .modal__content.active {
     transform: scale(1);
@@ -45,14 +43,7 @@
     color: #FF5E56;
     cursor: pointer;
 }
-.modal__content-text {
-    font-size: 14px;
-    line-height: 24px;
-    color: #808080;
-}
-.modal__content label {
-    font-size: 14px;
-}
+
 .modal__content-form {
     text-align: left;
     padding-bottom: 25px;
@@ -72,13 +63,7 @@
     font-weight: bold;
     cursor: pointer;
 }
-.modal__content-result {
-    font-size: 14px;
-    font-weight: 400;
-}
-.modal__content-result.hidden {
-    display: none;
-}
+
 .modal__content-add-btn {
     display: flex;
     align-items: center;

@@ -1,5 +1,6 @@
 .img__card {
   display: flex;
-    padding-top: 30px;
-    padding-bottom: 40px;
+  gap: 30px;
+  justify-content:center;
+  flex-wrap: wrap;
 }
