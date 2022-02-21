@@ -1,0 +1,132 @@
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.3);
+    top: 0;
+    left: 0;
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    width: 620px;
+    height: 425px;
+    position: relative;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.04);
+
+.close {
+    position: absolute;
+    right: 20px;
+    cursor: pointer;
+}
+
+.cardPicture {
+    font-size: 0;
+}
+
+.comments {
+    flex: 1;
+    margin-left: 14px;
+    font-size: 14px;
+    line-height: 15px;
+
+li {
+    margin-bottom: 20px;
+}
+
+.commentDate {
+    display: inline-block;
+    margin-bottom: 5px;
+    color: #999;
+}
+}
+
+.commentForm {
+    margin-top: 29px;
+
+input {
+    width: 332px;
+    height: 30px;
+    padding-left: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    outline: none;
+
+&::placeholder {
+     color: #ccc;
+ }
+}
+
+input[type='submit'] {
+    background-color: #4997d0;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+
+&:hover {
+     background-color: #3778c7;
+     transition: background-color 0.2s ease-in-out;
+ }
+}
+}
+}
+}
+
+@media screen and (max-width: 991px) {
+    .card {
+    img {
+        width: 280px;
+        height: 175px;
+    }
+}
+}
+
+@media screen and (max-width: 575px) {
+    .modal {
+    .content {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+        padding: 0;
+        flex-direction: column;
+
+    .close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+
+    .cardPicture {
+        width: 100%;
+
+    img {
+        width: 100%;
+        height: inherit;
+    }
+}
+
+.comments,
+.commentForm {
+    margin: 23px;
+}
+
+.comments {
+    flex-grow: 1;
+}
+
+.commentForm {
+input {
+    width: 100%;
+}
+}
+}
+}
+}

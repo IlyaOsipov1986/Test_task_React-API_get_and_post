@@ -1,0 +1,44 @@
+.card {
+  margin: 15px 0;
+  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+  border-radius: 10px;
+  font-size: 0;
+
+img {
+  border-radius: 10px;
+  width: 229px;
+  height: 142px;
+}
+
+&:hover {
+   cursor: pointer;
+   transform: translateY(-5px);
+ }
+}
+
+@media screen and (max-width: 991px) {
+  .card {
+  img {
+    width: 280px;
+    height: 175px;
+  }
+}
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+  img {
+    width: 290px;
+    height: 181px;
+  }
+}
+}
+
+@media screen and (max-width: 575px) {
+  .card {
+  img {
+    width: 100%;
+    height: inherit;
+  }
+}
+}

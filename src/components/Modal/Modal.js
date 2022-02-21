@@ -1,42 +1,91 @@
-import React, {useState} from "react";
-import './Modal.css';
+import axios from 'axios';
+import { useState } from 'react';
+import styles from './Modal.scss';
 
-const Modal = ({active, setActive}) => {
-    const [salary, setSalary] = useState('');
-    const [taxesResult, setTaxesResult] = useState('');
-    const [lastTaxes, setLastTaxes] = useState('');
+const Modal = ({ context, handleCloseButton }) => {
+    const [comments, setComments] = useState(context.comments);
+    const [username, setUsername] = useState('');
+    const [commentText, setCommentText] = useState('');
 
+    const handleSubmit = async (event) => {
+        event.preventDefault();
 
-    function calcSalary () {
-        let taxes = Number(salary * 12) * 0.13;
-        let lastTaxes = 260000 - (taxes * 3);
-        if (salary === '') {
-            alert('Введите сумму');
-        } else if (salary >= 55500) {
-            alert('Сумма для получения завышена');
-        } else {
-            setTaxesResult(taxes);
-            setLastTaxes(lastTaxes);
-            console.log(lastTaxes);
-            console.log(taxes);
+        const newComment = {
+            id: Math.floor(Math.random() * 1000),
+            name: username,
+            comment: commentText,
+            date: Date.now(),
+        };
+
+        try {
+            if (!username || !commentText) {
+                new Error('Заполните все поля формы!');
+            }
+
+            await axios.post(
+                `https://boiling-refuge-66454.herokuapp.com/images/${context.id}/comments`,
+                newComment
+            );
+
+            setComments((prev) => [
+                ...prev,
+                { id: newComment.id, text: commentText, date: newComment.date },
+            ]);
+        } catch (error) {
+            alert(error.message);
         }
-    }
+
+        setUsername('');
+        setCommentText('');
+    };
+
     return (
-        <div className={active ? 'modal active' : 'modal'} onClick={() => setActive(false)}>
-            <div className={active ? 'modal__content active' : 'modal__content'} onClick={e => e.stopPropagation()}>
-                <div className={'modal__content-close-btn'} onClick={() => setActive(false)}>×</div>
-                <h4 className={'modal__content-title'}></h4>
-                <div className={'modal__content-form'}>
-                    <form>
-                            <input placeholder={'Ваше имя'} value={salary} onChange={e => setSalary(e.target.value)}></input>
-                           <input placeholder={'Ваш комментарий'} value={salary} onChange={e => setSalary(e.target.value)}></input>
-                        <div className={'modal__content-form-btn'} onClick={() => calcSalary()}>Расситать</div>
+        <div className={styles.modal}>
+            <div className={styles.content}>
+                <img
+                    src="/src/img/close_button.png"
+                    className={styles.close}
+                    width={30}
+                    height={30}
+                    alt="Close"
+                    onClick={handleCloseButton}
+                />
+
+                <div className={styles.cardPicture}>
+                    <img alt={'Картинка с api'} src={context.url} width={331} height={205} />
+                </div>
+                <div className={styles.comments}>
+                    <ul>
+                        {comments
+                            ? comments.map((comment) => (
+                                <li key={comment.id}>
+                    <span className={styles.commentDate}>
+                      {new Date(comment.date).toLocaleDateString()}
+                    </span>
+                                    <p className="commentText">{comment.text}</p>
+                                </li>
+                            ))
+                            : null}
+                    </ul>
+                </div>
+                <div className={styles.commentForm}>
+                    <form onSubmit={handleSubmit}>
+                        <input
+                            placeholder="Ваше имя"
+                            value={username}
+                            onChange={(event) => setUsername(event.target.value)}
+                        />
+                        <input
+                            placeholder="Ваш комментарий"
+                            value={commentText}
+                            onChange={(event) => setCommentText(event.target.value)}
+                        />
+                        <input type="submit" value="Оставить комментарий" />
                     </form>
                 </div>
-                <div className={'modal__content-add-btn'}>Добавить</div>
             </div>
         </div>
-    )
+    );
 };
 
 export default Modal;
